@@ -7,6 +7,8 @@ import { HomeQuoteBanner } from "../../components/home-quote-banner/HomeQuoteBan
 import CategoryButton from "../../components/CategoryButton";
 import AllAnimeList from "../../components/AllAnimeList";
 import HomeBottomBanner from "../../components/HomeBottomBanner";
+import { useRecentAnime, useTopAiringAnime } from "../../Hooks/react-query";
+
 
 const animeSlides = [
   {
@@ -42,14 +44,31 @@ const animeSlides = [
 ];
 
 const Home: React.FC = () => {
+  const {
+    data: topAiringAnimeData,
+    isLoading: isLoadingTopAiring,
+    isError: isErrorTopAiring,
+    error: topAiringError,
+  } = useTopAiringAnime();
+  
+  const {
+    data: recentAnimeData,
+    isLoading: isLoadingRecent,
+    isError: isErrorRecent,
+    error: recentAnimeError,
+  } = useRecentAnime();
+  
+
+
 
 
   return (
     <Wrapper >
    
-      <BannerSwiper slides={animeSlides} />
-      <SliderSwiper slides={animeSlides} heading="Recent Episode" />
-      <HomeQuoteBanner />
+      {/* <BannerSwiper slides={topAiringAnimeData || []}/> */}
+      <BannerSwiper slides={topAiringAnimeData?.results || []} />
+      <SliderSwiper slides={recentAnimeData?.results || []} heading="Recent Episode" />
+      <HomeQuoteBanner /> 
       <CategoryButton />
       <AllAnimeList url="www.google.com" />
       <HomeBottomBanner />

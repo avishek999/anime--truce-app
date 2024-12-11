@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { ANIME_URL, SERVER_URL } from "../service/config";
 import {  ILoginPayload, ILoginResponse, ILoginResult } from "../interface/auth";
-import {  ITopAiringAnime } from "../interface/anime";
+import {  IAnimeDetails, ITopAiringAnime } from "../interface/anime";
 import { ERROR_MESSAGES, IApiResponse } from "../interface/common";
 
 
@@ -80,12 +80,44 @@ export const registerUser = async (
 
 export const getTopAiringAnimeData = async():Promise<IApiResponse<ITopAiringAnime>> =>{
 try {
-  const response = await axios.get(`${ANIME_URL}/top-airing`);
+  const response = await axios.get(`${ANIME_URL}/trending`);
   return response.data;
 } catch (error) {
      console.log(error,ERROR_MESSAGES.UNEXPECTED_ERROR);
      throw new Error(ERROR_MESSAGES.UNEXPECTED_ERROR);
 }
+
 }
+export const getRecentAnimeData = async():Promise<IApiResponse<ITopAiringAnime>> =>{
+  try {
+    const response = await axios.get(`${ANIME_URL}/recent-episodes`);
+    return response.data;
+  } catch (error) {
+       console.log(error,ERROR_MESSAGES.UNEXPECTED_ERROR);
+       throw new Error(ERROR_MESSAGES.UNEXPECTED_ERROR);
+  }
+  }
+
+  export const getAnimeDetails = async(id:string):Promise<IApiResponse<IAnimeDetails>> =>{
+    try {
+      const response = await axios.get(`${ANIME_URL}/info/${id}`);
+      return response.data;
+    } catch (error) {
+         console.log(error,ERROR_MESSAGES.UNEXPECTED_ERROR);
+         throw new Error(ERROR_MESSAGES.UNEXPECTED_ERROR);
+    }
+    }
+
+    export const getAnimeWatchDetails = async(id:string):Promise<IApiResponse<IAnimeDetails>> =>{
+      try {
+        const response = await axios.get(`${ANIME_URL}/watch/${id}`);
+        return response.data;
+        console.log(response.data);
+        
+      } catch (error) {
+           console.log(error,ERROR_MESSAGES.UNEXPECTED_ERROR);
+           throw new Error(ERROR_MESSAGES.UNEXPECTED_ERROR);
+      }
+      }
 
 //  ======================================= ANIME API END  ============================================

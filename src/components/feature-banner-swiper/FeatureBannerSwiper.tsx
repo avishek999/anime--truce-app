@@ -44,7 +44,7 @@ import {
                   alt=""
                 />
                 <h1 className="sliderText absolute bottom-0 text-[18px] px-6 py-5 text-white">
-                  {slide.title}
+                  {slide.title.english}
                 </h1>
                 </IonRouterLink>
               </SwiperSlide>  

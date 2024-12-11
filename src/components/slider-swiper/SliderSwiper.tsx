@@ -42,7 +42,7 @@ const SliderSwiper: React.FC<IBannerSwiper> = ({ slides , heading }) => {
                 alt="Episode Loading.."
                 loading="lazy"
               />
-              <p className="SwiperCardTitle">{slide.title}</p>
+              <p className="SwiperCardTitle">{slide.title.english}</p>
             </IonRouterLink>
           </SwiperSlide>
         ))}

@@ -54,8 +54,8 @@ const App: React.FC = () => {
             <PrivateRoute exact path="/home" component={Home} />
             <PrivateRoute exact path="/feature" component={Features} />
             <PrivateRoute exact path="/bot" component={Bot} />
-            <PrivateRoute exact path={`/anime`} component={AnimeDetails} />
-            <PrivateRoute exact path={`/watch`} component={AnimeWatch} />
+            <PrivateRoute exact path={`/anime/:id`} component={AnimeDetails} />
+            <PrivateRoute exact path={`/watch/:id`} component={AnimeWatch} />
             <PrivateRoute exact path={`/profile`} component={Profile} />
 
 
@@ -67,7 +67,7 @@ const App: React.FC = () => {
             </Route>
             <Route path="/not-found" exact component={Page404}></Route>
             <Route path="*" exact>
-              <Redirect to="not-found" />
+              {/* <Redirect to="not-found" /> */}
             </Route>
           </Switch>
         </IonRouterOutlet>
